@@ -1,6 +1,6 @@
 # compiler and flags
 CC:=clang
-CFLAGS:=-c -Wall
+CFLAGS:=-Wall
 SRC:=$(wildcard src/*.c)
 BINS:=$(patsubst %.c,%,$(SRC))
 
