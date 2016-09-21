@@ -1,13 +1,16 @@
 # compiler and flags
 CC:=clang
 CFLAGS:=-Wall
+LDFLAGS:=-lm
 SRC:=$(wildcard src/*.c)
-BINS:=$(patsubst %.c,%,$(SRC))
+BINS:=$(patsubst src/%.c,%,$(SRC))
 
 all: $(BINS)
 
-%: %.c
-	$(CC) $(CFLAGS) -o $(notdir $@) $<
+.DELETE_ON_ERROR:
+
+$(BINS): %: src/%.c
+	$(CC) $(CFLAGS) -o $(notdir $@) $< $(LDFLAGS)
 
 clean:
 	rm $(notdir $(BINS))
